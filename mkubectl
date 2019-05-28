@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ ! -e ~/.mkubectl ]]; then
+  echo "~/.mkubectl NOT found."
+fi
+
+for i in $(cat ~/.mkubectl)
+do
+  KUBECTL_CONTEXT=$i
+  echo "##############################################################################"
+  echo "${KUBECTL_CONTEXT}"
+  echo "##############################################################################"
+  kubectl --context=${KUBECTL_CONTEXT} $@
+  echo ""
+done
